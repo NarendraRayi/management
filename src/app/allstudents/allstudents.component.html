@@ -1,0 +1,27 @@
+<table border="3">
+     <thead>
+         <th>Name</th>
+         <th>Gender</th>
+         <th>Mobile</th>
+         <th>Email</th>
+         <th>Batch</th>
+         <th>Address</th>
+     </thead>
+     <tbody>
+        <tr *ngFor="let student of students">
+            <td>{{student.name}}</td>
+            <td>{{student.gender}}</td>
+            <td>{{student.mobile}}</td>
+            <td>{{student.email}}</td>
+            <td>{{student.batch}}</td>
+            <td>{{student.address|json}}</td>
+        </tr>
+
+
+
+
+     </tbody>
+
+
+
+</table>
