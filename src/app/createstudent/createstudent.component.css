@@ -1,6 +1,30 @@
 form{
     background-color: grey;
-    height: 250px;
-    width: 300px;
+    height: 400px;
+    width: 400px;
+    margin: 15px;
 }
+label{
+    
+   padding: 20px;
+   align-items: center;
+
+   
+}
+
+input{
+    margin: 8px;
+}
+
+button{
+    margin: 5px;
+    align-items: center;
+    display: flex;
+    justify-content: center;
+    margin-left: 100px;
+    size: 60px;
+    color:black;
+    background-color: aqua;
+}
+
 

@@ -1,27 +1,41 @@
-<table border="3">
-     <thead>
-         <th>Name</th>
-         <th>Gender</th>
-         <th>Mobile</th>
-         <th>Email</th>
-         <th>Batch</th>
-         <th>Address</th>
-     </thead>
-     <tbody>
-        <tr *ngFor="let student of students">
-            <td>{{student.name}}</td>
-            <td>{{student.gender}}</td>
-            <td>{{student.mobile}}</td>
-            <td>{{student.email}}</td>
-            <td>{{student.batch}}</td>
-            <td>{{student.address|json}}</td>
-        </tr>
+<select [(ngModel)]='column'>
+     <option>name</option>
+     <option></option>
+</select>
+<select [(ngModel)]="order">
+    <option>asc</option>
+    <option>desc</option>
+</select>
+<button (click)="sort()">Sort</button>
 
+<table border="1">
+  <thead>
+    <th>Id</th>
+    <th>Name</th>
+    <th>Gender</th>
+    <th>Mobile</th>
+    <th>Email</th>
+    <th>Batch</th>
+    <th>Address</th>
+    <th>Avatar</th>
+    <th>Actions</th>
+  </thead>
+  <tbody>
+    <tr *ngFor="let student of students">
+      <td>{{student.id}}</td>
+      <td>{{ student.name }}</td>
+      <td>{{ student.gender }}</td>
+      <td>{{ student.mobile }}</td>
+      <td>{{ student.email }}</td>
+      <td>{{ student.batch }}</td>
+      <td>{{ student.address.city }}</td>
+      <td><img src='{{student.avatar}}'></td>
+      <td> 
+      <button (click)="delete(student.id)">Delete</button>
+      <button (click)="view()">View</button>
+      <button>Edit</button></td>
 
-
-
-     </tbody>
-
-
-
+    </tr>
+    
+  </tbody>
 </table>
