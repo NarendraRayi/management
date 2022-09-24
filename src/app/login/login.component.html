@@ -1,11 +1,12 @@
 <div class="parent">
-    <div class="child">
-      <form><h2>Login</h2><br>  
-         <label>Email</label>
-          <input type="text"><br>
-          <label>Password</label>
-          <input type="password"><br>
-          <button (click)="signin()">Sign in</button>
+    <div>
+      <form  [formGroup]="loginForm">
+        <h2>Login</h2>  <br>
+         <label class="col-sm-4" >Email</label>
+          <input type="email" formControlName="email">
+          <label class="col-sm-4">Password</label>
+          <input type="password" formControlName="password"><br>
+          <button (click)="submit()">Sign in</button>
         </form>
       </div>
   </div>

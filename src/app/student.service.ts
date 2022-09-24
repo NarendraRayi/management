@@ -15,6 +15,15 @@ export class StudentService {
   sortStudent(column: string, order:string): Observable<Students>{
   return this._httpClient.get<Students>('https://62b9299dff109cd1dc8ca34f.mockapi.io/students'+'?sortBy='+column+'&order='+order);
   }
+  getFilterStudent(filterTerm: string): Observable<Students[]>{
+    return this._httpClient.get<Students[]>('https://62b9299dff109cd1dc8ca34f.mockapi.io/students' + '?filter=' + filterTerm);
+  }
+  getPagedStudent(pageNo: number):Observable<Students[]> {
+    return this._httpClient.get<Students[]>('https://62b9299dff109cd1dc8ca34f.mockapi.io/students'+'?limit=5&page='+pageNo);
+  }
+  createStudent(data:any): Observable<Students[]>{
+    return this._httpClient.post<Students[]>('https://62b9299dff109cd1dc8ca34f.mockapi.io/students',data);
+    }
   editStudent(column: string, order:string): Observable<Students>{
     return this._httpClient.get<Students>('https://62b9299dff109cd1dc8ca34f.mockapi.io/students'+'?sortBy='+column+'&order='+order);
     }

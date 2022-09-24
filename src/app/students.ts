@@ -12,7 +12,7 @@ export interface Students {
         mandal: string,
         district: string,
         state: string,
-        pincode: null
+        pincode: string
     };
     educations: [
         { qualification: string, year: number, percentage: number },

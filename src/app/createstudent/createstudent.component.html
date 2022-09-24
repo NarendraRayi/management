@@ -1,21 +1,71 @@
- <form>
-    <label>Name</label>
-    <input type="text"/><br>
-    <label for="">Last Name</label>
-    <input type="text"><br>
-    <label>Phone number</label>
-    <input type="number" ><br>
-    <label>Email</label>
-    <input type="email"><br>
-    <label>Batch</label>
-    <input type="date"><br>
-    <label>Address</label><br>
-    <label>State</label>
-    <input type="text"><br>
-    <label>Pincode</label>
-    <input type="number"><br>
-    <button>Add Education</button><br>
-    <button >Submit</button><br>
 
+  <div [formGroup]="studentForm" class="row form-group">
+    <form>
+  <label  class="col-sm-4">Name</label>
+  <input type="text" formControlName="name" /><br />
+  <label class="col-sm-4">Last Name</label>
+  <input type="text" formControlName="lastname" /><br />
+  <label  class="col-sm-4">Gender</label>
+  <input type="radio" name="gender" formControlName="gender"/>
+  <label class=" col-sm-4">Male</label>
+  <input type="radio" name="gender" formControlName="gender">
+  <label>Female</label><br>
+  <label  class="col-sm-4">Phone No</label>
+  <input type="number" formControlName="mobile" /><br />
+  <label  class="col-sm-4">Email</label>
+  <input type="email" formControlName="email" /><br />
+  <label  class="col-sm-4">Batch</label>
+  <input type="date" formControlName="batch" /><br />
+    
+  <div formArrayName="address" class="row formArray">
+    <label class="col-sm-4">City</label>
+    <input type="text" formControlName="city"><br>
+    <label  class="col-sm-4">State</label>
+    <input type="text" formControlName="state" /><br />
+    <label  class="col-sm-4">Pincode</label>
+    <input type="number" formControlName="pincode"/>
+  </div>
+
+  <button (click)="add()">Add Education</button>
+
+  <div formArray="educations">
+    <div *ngFor="let card of studentFormArray.controls; let i=index">
+        <div formGroupName="{{i}}">
+           <label  class="col-sm-4">Qualification</label>
+           <input type="qualificaton" formControlName="qualification"><br>
+           <label  class="col-sm-4">Year</label>
+           <input type="number" formControlName="year"><br>
+           <label  class="col-sm-4">Percentage</label>
+          <input type="number" formControlName="percentage">
+          
+          <div class="error" *ngIf="studentFormArray.controls[i].get('percentage')?.touched && studentFormArray.controls[i].get('percentage')?.invalid">
+            <p *ngIf="studentFormArray.controls[i].get('percentage')?.errors?.['required']">percentage is required</p>
+            <p *ngIf="studentFormArray.controls[i].get('percentage')?.errors?.['min']">percentage contains Min 2 numbers</p>
+            <p *ngIf="studentFormArray.controls[i].get('percentage')?.errors?.['max']">percentage contains Max 2 numbers</p>
+         </div>
+          <br>
+          <button (click)="remove(i)">Remove</button>
+        </div>
+      </div>
+    </div>
+   
+    <label>SourceType :</label>
+    <label>Sourcefrom</label>
+    <input type="radio" name="source" value="from" formControlName="sourceType">
+    <label>Referalname</label>
+    <input type="radio" name="source" value="referal" formControlName="sourceType"><br>
+
+    <div *ngIf="studentForm.get('sourceType')?.value=='from'">
+       <label>Social media</label>
+       <input type='radio' formControlName="sourceFrom">
+       <label>office</label>
+       <input type='radio' formControlName="sourceFrom"><br>
+    </div>
+    <div *ngIf="studentForm.get('sourceType')?.value=='referal'">
+       <label>Referalname</label>
+       <input type="text" formControlName="referalName">
+    </div><br>
+
+    <button (click)="submit()">Submit</button><br />
   </form>
 

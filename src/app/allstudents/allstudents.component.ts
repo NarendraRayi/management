@@ -15,6 +15,8 @@ export class AllstudentsComponent implements OnInit {
 
   public column: string = "";
   public order: string = '';
+  public filterTerm: string = '';
+
   constructor(private _studentService: StudentService,private _router: Router) { 
     this._studentService.getStudent().subscribe(
       (data: any) => {
@@ -38,6 +40,36 @@ export class AllstudentsComponent implements OnInit {
       }
     )
   }
+  page(pageNo: number) {
+    this._studentService.getPagedStudent(pageNo).subscribe(
+      (data: any) => {
+        this.students = data;
+      },
+      (err: any) => {
+        alert('Internal server error');
+      }
+     )
+  }
+  filter() {
+    return this._studentService.getFilterStudent(this.filterTerm).subscribe(
+      (data: any) => {
+        this.students = data;
+      },
+      (err: any) => {
+        alert('Internal server error')
+      }
+
+    )
+  }
+  pagination(pageNo: number) {
+    return this._studentService.getPagedStudent(pageNo).subscribe(
+      (data: any) => {
+        this.students = data;
+      },
+      (err: any) => {
+        alert('Internal server error');
+      }
+    )}
   delete(id:string) {
     return this._studentService.deleteStudent(id).subscribe(
       (data: any) => {
